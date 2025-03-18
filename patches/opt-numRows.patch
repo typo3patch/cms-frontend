@@ -1,0 +1,13 @@
+#@ https://github.com/xerc
+#? https://github.com/search?q=repo:TYPO3-CMS/frontend+%2F+(numRows\(|%3D+'count\(\*)%2F&type=code
+--- cms-frontend/Classes/ContentObject/ContentObjectRenderer.bak	2023-09-28 15:47:31.663113209 +0200
++++ cms-frontend/Classes/ContentObject/ContentObjectRenderer.php	2023-09-28 15:48:10.776114796 +0200
+@@ -2504,7 +2504,7 @@
+      */
+     public function numRows($conf)
+     {
+-        $conf['select.']['selectFields'] = 'count(*)';
++        $conf['select.']['selectFields'] = $conf['select.']['selectFields'] ?: 'COUNT(*)';
+         $statement = $this->exec_getQuery($conf['table'], $conf['select.']);
+
+         return (int)$statement->fetchOne();
